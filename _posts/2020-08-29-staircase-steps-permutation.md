@@ -1,7 +1,10 @@
 ---
 title: Staircase steps permutation
 tags: difficult recursion memoization
+
+is_post: true
+difficulty: difficult
 ---
 
-**Level**: **Difficult**
+
 ### Problem Description

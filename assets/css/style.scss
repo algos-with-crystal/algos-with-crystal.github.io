@@ -3,6 +3,19 @@
 
 @import "{{ site.theme }}";
 
+.page-header {
+    padding: 2rem;
+
+}
+
+.project-name {
+    a {
+        color: white;
+        cursor: pointer;
+        text-decoration: none;
+    }
+}
+
 #main {
     display: flex;
 }

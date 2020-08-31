@@ -1,7 +1,7 @@
 ---
 title: Memoization
 ---
-### Hash
+### Memoization
 
 {% for p in site.tags.memoization %}
   [{{p.title}}]({{ p.url }})
