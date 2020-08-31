@@ -1,6 +1,8 @@
 theme: jekyll-theme-cayman
 
-title: Algorithms
 description: Learning Algorithms with Crystal lang
+title: Algorithms
 show_downloads: false
+
+markdown: kramdown
 

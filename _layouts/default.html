@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+
+    {% if site.google_analytics %}
+      <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '{{ site.google_analytics }}');
+      </script>
+    {% endif %}
+    <meta charset="UTF-8">
+
+{% seo %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">Algorithms</h1><span>with crystal-lang</span>
+      <h2 class="project-tagline">Learning algorithms using crystal language</h2>
+    </header>
+
+    <div id="main">
+      <section id="left-pane">
+        <h3>Posts</h3>
+        <ul>
+          {% for post in site.posts %}
+            <li>
+              <a href="{{ post.url }}">{{ post.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+
+      </section>
+
+      <main id="center-pane" class="main-content" role="main">
+        {% if page.is_post %}
+          <h3 id="page-title">{{ page.title }}</h3>
+          <p>difficulty: {{ page.difficulty }}</p>
+          <p>tags: {{ page.tags | join: ', ' }}</p>
+        {% endif %}
+        
+        {{ content }}
+
+        <footer class="site-footer">
+        </footer>
+      </main>
+
+      <section id="right-pane">
+        <div class="tags">
+          <h3>Tags</h3>
+          {% for tag in site.tags %}
+            <h4>
+              <a href="/tags/{{ tag[0] }} ">{{ tag[0] }} ({{ tag[1].size }})</a>
+            </h4>
+          {% endfor %}
+        </div>
+
+      </section>
+
+    </div>
+
+
+
+  </body>
+</html>

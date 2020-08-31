@@ -1,0 +1,32 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+#main {
+    display: flex;
+}
+
+#left-pane {
+    padding-left: 10px;
+    ul {
+        padding-left: 10px;
+        li {
+            list-style: none;
+        }
+    }
+}
+
+#center-pane {
+    flex-grow: 4;
+    margin: 2rem auto;
+    padding: 0;;
+}
+
+#right-pane {
+    padding-right: 10px;
+}
+
+#page-title {
+    text-align: center;
+}
