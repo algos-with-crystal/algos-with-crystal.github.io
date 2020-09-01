@@ -29,7 +29,7 @@ In order to improve runtime, you can take a slightly different approach. Essenti
 
 ### Solution
 Code
-<small>[source code](https://github.com/algos-with-crystal/algos-with-crystal.github.io/lib/pair_sum_to_k.cr){:target="_blank" rel="noopener"}</small>
+<small>[source code](https://github.com/algos-with-crystal/algos-with-crystal.github.io/blob/master/lib/pair_sum_to_k.cr){:target="_blank" rel="noopener"}</small>
 
 
 ```
@@ -53,7 +53,7 @@ def has_pair_sum(numbers : Array(Int32), k : Int32) : Bool
   ```
 
 Spec 
-<small>[source code](https://github.com/algos-with-crystal/algos-with-crystal.github.io/lib/spec/pair_sum_to_k_spec.cr){:target="_blank" rel="noopener"}</small>
+<small>[source code](https://github.com/algos-with-crystal/algos-with-crystal.github.io/blob/master/lib/spec/pair_sum_to_k_spec.cr){:target="_blank" rel="noopener"}</small>
 
 
 ```
