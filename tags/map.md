@@ -1,8 +1,8 @@
 ---
-title: Hash
+title: Map
 ---
-### Hash
+### Map
 
-{% for p in site.tags.hash %}
+{% for p in site.tags.map %}
   [{{p.title}}]({{ p.url }})
 {% endfor %}

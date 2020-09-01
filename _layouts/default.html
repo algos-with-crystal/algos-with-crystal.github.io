@@ -17,7 +17,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
   </head>
   <body>
     <a id="skip-to-content" href="#content">Skip to the content.</a>
@@ -43,8 +48,8 @@
       <main id="center-pane" class="main-content" role="main">
         {% if page.is_post %}
           <h3 id="page-title">{{ page.title }}</h3>
-          <p>difficulty: {{ page.difficulty }}</p>
-          <p>tags: {{ page.tags | join: ', ' }}</p>
+          <span class="badge badge-secondary">Difficulty: {{ page.difficulty }}</span>
+          <span class="badge badge-secondary">Tags: {{ page.tags | join: ', ' }}</span>
         {% endif %}
         
         {{ content }}
@@ -57,9 +62,9 @@
         <div class="tags">
           <h3>Tags</h3>
           {% for tag in site.tags %}
-            <h4>
+            <h5>
               <a href="/tags/{{ tag[0] }} ">{{ tag[0] }} ({{ tag[1].size }})</a>
-            </h4>
+            </h5>
           {% endfor %}
         </div>
 
