@@ -20,67 +20,142 @@ Output: `5` Since the possible ways are `[1,1,1,1], [1,1,2], [1,2,1], [2,2], [2,
 
 ### Thought Process
 
-At any point of your climb, you have `length(k)` possibilities, but not all of those possible values in `k` will lead to exactly to the final step in staircase. 
+At any point of your climb, you have `length(k)` possibilities of steps to choose from. However, not all of those possible values in `k` will lead you to exactly to the final step in staircase.
 
-So, take a step forward for all possible values of `k` and if you happen to exactly traverse `n` steps, you can increase your answer by 1. If you've gone over `n` then discontinue your climbing, and if you're under `n` then continue the process.
+So, take a step forward for all possible values of `k` and if you happen to exactly traverse `n` steps, you can increase your answer by 1. If you've gone over `n` then discontinue your climbing, and if you're under `n` then continue climbing.
 
 For simplicity sake, you can consider that `k` may contain duplicate but your solution can treat them as unique still.
 
 
 ### Solution
-Code
 <small>[source code](https://github.com/algos-with-crystal/algos-with-crystal.github.io/blob/master/lib/staircase_steps_permutation.cr#L1){:target="_blank" rel="noopener"}</small>
 
 
 ```ruby
 def climb(n : Int32, k : Array(Int32))
+    return climb(n, k, n)
+end
+
+private def climb(n : Int32, k : Array(Int32), remaining_steps : Int32)
     count = 0
+
     k.each do |step|
-        if step > n
-            break
-        elsif step == n
-            count += 1
-            break
+        new_remaining_steps = remaining_steps - step
+        if new_remaining_steps == 0
+            return count + 1
+        elsif new_remaining_steps > 0
+            count += climb(n, k, new_remaining_steps)
         else
-            count += climb(n-step, k)
-        end 
+            return 0
+        end
     end
+
     count
 end
 ```
 
 This solution has runtime of <code>O(k<sup>n</sup>)</code> as in each iteration, we have `k` possibilities until we reach `n`.
-While this works, there is another optimization possible. Anytime you find out there are `x` ways to climb `p` steps, you can store that value and reuse it anytime you need to solve for total ways to climb `p` more steps again. This should reduce your runtime to `O(n*k)` with a memory footprint of `O(n)`.
+While this works, there is a possible optimization. Anytime you find out there are `x` ways to climb `p` steps, you can store that value and reuse it anytime you need to solve for total ways to climb `p` more steps again. This should reduce your runtime to `O(n*k)` with a memory footprint of `O(n)`.
+
+<small>[source code](https://github.com/algos-with-crystal/algos-with-crystal.github.io/blob/master/lib/staircase_steps_permutation.cr#L22){:target="_blank" rel="noopener"}</small>
 
 ```ruby
 def climb_with_memoization(n : Int32, k : Array(Int32))
-    return climb_with_memoization(n, k, {} of Int32 => Int32)
+    return climb_with_memoization(n, k, n, {} of Int32 => Int32)
   end
-  
-private def climb_with_memoization(n : Int32, k : Array(Int32), memory : Hash(Int32, Int32))
-    if memory.has_key? n
-        return memory[n]
+
+private def climb_with_memoization(n : Int32, k : Array(Int32), remaining_steps : Int32, memory : Hash(Int32, Int32))
+    if memory.has_key? remaining_steps
+        return memory[remaining_steps]
     end
   
     count = 0
+
     k.each do |step|
-        if step > n
-            break
-        elsif step == n
+        new_remaining_steps = remaining_steps - step
+        if new_remaining_steps == 0
             count += 1
-            break
+            memory[new_remaining_steps] = count
+            return count
+        elsif new_remaining_steps > 0
+            count += climb_with_memoization(n, k, new_remaining_steps, memory)
         else
-            count += climb_with_memoization(n-step, k, memory)
-        end 
+            return 0
+        end
     end
-    memory[n] = count
+
     count
 end
 ```
 
-Spec 
-<small>[source code](https://github.com/algos-with-crystal/algos-with-crystal.github.io/blob/master/lib/spec/staircase_steps_permutation_spec.cr#L17){:target="_blank" rel="noopener"}</small>
+And you can also trace the solutions.
 
+<small>[source code](https://github.com/algos-with-crystal/algos-with-crystal.github.io/blob/master/lib/staircase_steps_permutation.cr#L49){:target="_blank" rel="noopener"}</small>
+
+```ruby
+def climb_with_memoization_trace(n : Int32, k : Array(Int32))  
+    return climb_with_memoization_trace(n, k, n, {} of Int32 => Int32, [] of Int32)
+end
+
+private def climb_with_memoization_trace(n : Int32, k : Array(Int32), remaining_steps : Int32, memory : Hash(Int32, Int32), trace)
+    if memory.has_key? remaining_steps
+        return memory[remaining_steps]
+    end
+  
+    count = 0
+    k.each do |step|
+        new_remaining_steps = remaining_steps - step
+        if new_remaining_steps == 0
+            count += 1
+            memory[new_remaining_steps] = count
+            puts (trace + [step])
+            return count
+        elsif new_remaining_steps > 0
+            trace << step
+            count += climb_with_memoization_trace(n, k, new_remaining_steps, memory, trace)
+            trace.pop()
+        else
+            return 0
+        end
+    end
+
+    count
+end
+```
+
+**Spec**
+<small>[source code](https://github.com/algos-with-crystal/algos-with-crystal.github.io/blob/master/lib/spec/staircase_steps_permutation_spec.cr){:target="_blank" rel="noopener"}</small>
+
+```ruby
+def climb_with_memoization_trace(n : Int32, k : Array(Int32))  
+    return climb_with_memoization_trace(n, k, n, {} of Int32 => Int32, [] of Int32)
+end
+
+private def climb_with_memoization_trace(n : Int32, k : Array(Int32), remaining_steps : Int32, memory : Hash(Int32, Int32), trace)
+    if memory.has_key? remaining_steps
+        return memory[remaining_steps]
+    end
+  
+    count = 0
+    k.each do |step|
+        new_remaining_steps = remaining_steps - step
+        if new_remaining_steps == 0
+            count += 1
+            memory[new_remaining_steps] = count
+            puts (trace + [step])
+            return count
+        elsif new_remaining_steps > 0
+            trace << step
+            count += climb_with_memoization_trace(n, k, new_remaining_steps, memory, trace)
+            trace.pop()
+        else
+            return 0
+        end
+    end
+
+    count
+end
+```
 
 ```ruby
 require "spec"
@@ -93,8 +168,8 @@ tests = [
     {n: 2, k:[1, 2], expected: 2},
     {n: 4, k:[1,2], expected: 5},
     {n: 4, k:[2], expected: 1},
-    {n: 4, k:[2, 2], expected: 1}, # for simplicity sake, consider these unique
-
+    {n: 4, k:[2, 2], expected: 2}, # for simplicity sake, consider these unique
+    {n: 8, k:[1,2,3,4], expected: 108},
 ]
 
 tests.each do |test|

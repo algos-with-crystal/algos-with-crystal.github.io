@@ -29,7 +29,6 @@ For each number `n` in the `numbers` you will need to determine if `k-n` also ex
 In order to improve runtime, you can take a slightly different approach. Essentially, for each number, you can also check if `k-n` already exists in the list. If it does, then output must be `True`. Using this approach, in a single iteration, you can build the HashMap as well as check if `k-n` already exists. This approach will incur `O(N)` of memory but also a runtime of `O(N)`.
 
 ### Solution
-Code
 <small>[source code](https://github.com/algos-with-crystal/algos-with-crystal.github.io/blob/master/lib/pair_sum_to_k.cr){:target="_blank" rel="noopener"}</small>
 
 
@@ -53,7 +52,7 @@ def has_pair_sum(numbers : Array(Int32), k : Int32) : Bool
 end
 ```
 
-Spec 
+**Spec**
 <small>[source code](https://github.com/algos-with-crystal/algos-with-crystal.github.io/blob/master/lib/spec/pair_sum_to_k_spec.cr){:target="_blank" rel="noopener"}</small>
 
 

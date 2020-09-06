@@ -9,6 +9,7 @@ tests = [
     {n: 4, k:[1,2], expected: 5},
     {n: 4, k:[2], expected: 1},
     {n: 4, k:[2, 2], expected: 2}, # for simplicity sake, consider these unique
+    {n: 8, k:[1,2,3,4], expected: 108},
 ]
 
 tests.each do |test|
