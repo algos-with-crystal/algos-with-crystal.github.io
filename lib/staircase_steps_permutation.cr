@@ -13,11 +13,10 @@ def climb(n : Int32, k : Array(Int32))
     count
 end
 
-  
 def climb_with_memoization(n : Int32, k : Array(Int32))
     return climb_with_memoization(n, k, {} of Int32 => Int32)
   end
-  
+
 private def climb_with_memoization(n : Int32, k : Array(Int32), memory : Hash(Int32, Int32))
     if memory.has_key? n
         return memory[n]
@@ -26,7 +25,7 @@ private def climb_with_memoization(n : Int32, k : Array(Int32), memory : Hash(In
     count = 0
     k.each do |step|
         if step > n
-            break
+            return 0
         elsif step == n
             count += 1
             break
