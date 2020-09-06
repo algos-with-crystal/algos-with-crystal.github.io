@@ -22,7 +22,7 @@ Output: `5` Since the possible ways are `[1,1,1,1], [1,1,2], [1,2,1], [2,2], [2,
 
 At any point of your climb, you have `length(k)` possibilities of steps to choose from. However, not all of those possible values in `k` will lead you to exactly to the final step in staircase.
 
-So, take a step forward for all possible values of `k` and if you happen to exactly traverse `n` steps, you can increase your answer by 1. If you've gone over `n` then discontinue your climbing, and if you're under `n` then continue climbing.
+So, take a step forward for all possible values of `k` and if you happen to exactly traverse `n` steps, you have a solution so increase your count by 1. If you've gone over `n` then discontinue your climbing for remaining values left in `k`. Finally if you're under `n` then continue climbing.
 
 For simplicity sake, you can consider that `k` may contain duplicate but your solution can treat them as unique still.
 
