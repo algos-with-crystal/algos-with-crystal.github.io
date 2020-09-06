@@ -12,6 +12,7 @@ difficulty: easy
 You're provided an array list of integers `numbers` and an int `k`. Determine if any two numbers in `numbers` will sum up to `k` or not.
 
 ### Example
+
 Input: `numbers = [1, 2]`, `k=3`
 Output: `True`
 
@@ -32,31 +33,31 @@ Code
 <small>[source code](https://github.com/algos-with-crystal/algos-with-crystal.github.io/blob/master/lib/pair_sum_to_k.cr){:target="_blank" rel="noopener"}</small>
 
 
-```
+```ruby
 def has_pair_sum(numbers : Array(Int32), k : Int32) : Bool
-    if numbers.size < 2
-      return false
-    end
-  
-    map = {} of Int32 => Bool
-  
-    numbers.each do |n|
-      diff = k - n
-      if map.has_key? diff
-        return true
-      end
-      map[n] = true
-    end
-
-    false
+  if numbers.size < 2
+    return false
   end
-  ```
+
+  map = {} of Int32 => Bool
+
+  numbers.each do |n|
+    diff = k - n
+    if map.has_key? diff
+      return true
+    end
+    map[n] = true
+  end
+
+  false
+end
+```
 
 Spec 
 <small>[source code](https://github.com/algos-with-crystal/algos-with-crystal.github.io/blob/master/lib/spec/pair_sum_to_k_spec.cr){:target="_blank" rel="noopener"}</small>
 
 
-```
+```ruby
 describe "#has_pair_k" do
   cases = [
             {numbers: [] of Int32, k: 0, expected: false},
