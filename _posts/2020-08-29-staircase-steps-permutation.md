@@ -1,6 +1,6 @@
 ---
 title: Staircase steps permutation
-tags: recursion memoization
+tags: recursion memoization difficult
 
 is_post: true
 difficulty: difficult

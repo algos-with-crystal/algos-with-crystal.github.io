@@ -1,6 +1,6 @@
 ---
 title: Pair Sum to K
-tags: map
+tags: map easy
 
 is_post: true
 difficulty: easy
