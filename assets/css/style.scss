@@ -34,7 +34,8 @@
 #center-pane {
     flex-grow: 4;
     margin: 2rem auto;
-    padding: 0;;
+    padding: 0 2rem;
+    width: 100%;
 }
 
 #right-pane {
@@ -44,4 +45,12 @@
 
 #page-title {
     text-align: center;
+}
+
+#list-links {
+    padding: 0;
+    margin: 0;
+    li {
+        list-style: none;
+    }
 }

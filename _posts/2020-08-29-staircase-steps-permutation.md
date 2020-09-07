@@ -165,5 +165,3 @@ tests.each do |test|
     end
 end
 ```
-
-{% include  fb_comments.html %}

@@ -74,5 +74,3 @@ describe "#has_pair_k" do
   end
 end
 ```
-
-{% include  fb_comments.html %}

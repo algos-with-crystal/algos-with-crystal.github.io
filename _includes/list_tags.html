@@ -1,0 +1,8 @@
+<div class="tags">
+    <h3>Tags</h3>
+    {% for tag in site.tags %}
+      <h5>
+        <a href="/tags/{{ tag[0] }} ">{{ tag[0] }} ({{ tag[1].size }})</a>
+      </h5>
+    {% endfor %}
+  </div>

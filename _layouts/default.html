@@ -28,23 +28,14 @@
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v8.0&appId=763718624416213&autoLogAppEvents=1" nonce="FRRYgRBb"></script>
 
-    <a id="skip-to-content" href="#content">Skip to the content.</a>
-
     <header class="page-header" role="banner">
       <h1 class="project-name"><a href="/">Algorithms</a></h1><span>with crystal-lang</span>
       <h2 class="project-tagline">Learning algorithms using crystal language</h2>
     </header>
 
     <div id="main">
-      <section id="left-pane">
-        <h3>Posts</h3>
-        <ul>
-          {% for post in site.posts %}
-            <li>
-              <a href="{{ post.url }}">{{ post.title }}</a>
-            </li>
-          {% endfor %}
-        </ul>
+      <section id="left-pane" class="d-none d-md-block">
+        {% include  list_posts.html %}
 
       </section>
 
@@ -57,20 +48,26 @@
         
         {{ content }}
 
+
         <footer class="site-footer">
+          <ul id="list-links" class="d-md-none">
+            <li>
+              <a href="/list-posts.html">Show all posts</a>
+            </li>
+            <li>
+            <a href="/list-tags.html">Show all tags</a>
+
+            </li>
+          </ul>
+
+          {% if page.is_post %}
+            {% include  fb_comments.html %}
+          {% endif %}
         </footer>
       </main>
 
-      <section id="right-pane">
-        <div class="tags">
-          <h3>Tags</h3>
-          {% for tag in site.tags %}
-            <h5>
-              <a href="/tags/{{ tag[0] }} ">{{ tag[0] }} ({{ tag[1].size }})</a>
-            </h5>
-          {% endfor %}
-        </div>
-
+      <section id="right-pane" class="d-none d-md-block">
+        {% include  list_tags.html %}
       </section>
 
     </div>
