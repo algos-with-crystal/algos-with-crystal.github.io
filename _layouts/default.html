@@ -36,12 +36,14 @@
     <div id="main">
       <section id="left-pane" class="d-none d-md-block">
         {% include  list_posts.html %}
-
       </section>
 
       <main id="center-pane" class="main-content" role="main">
         {% if page.is_post %}
-          <h3 id="page-title">{{ page.title }}</h3>
+          <h3 id="page-title">
+            {{ page.title }}
+          </h3>
+
           <span class="badge badge-secondary">Difficulty: {{ page.difficulty }}</span>
           <span class="badge badge-secondary">Tags: {{ page.tags | join: ', ' }}</span>
         {% endif %}
